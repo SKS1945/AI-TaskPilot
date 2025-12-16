@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # "debug_toolbar",
+
+    'project',
+    'task',
+    'resource',
+    'skill',
+    'notification',
 ]
 
 MIDDLEWARE = [
@@ -74,8 +82,12 @@ WSGI_APPLICATION = "smartflow.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "smartflow",
+        "HOST": "localhost",
+        "USER": "souren",
+        "PORT": "3306",
+        "PASSWORD": "Nylon#365"
     }
 }
 
@@ -115,3 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+INTERNAL_IPS = [
+
+    "127.0.0.1",
+]
