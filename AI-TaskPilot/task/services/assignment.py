@@ -2,6 +2,23 @@ from task.models import TaskAssignment
 from resource.services.availability import get_latest_availability
 from skill.services.matching import compute_skill_match
 
+from resource.models import Resource
+from task.models import Task
+from task.services.assignment import assign_best_resource
+
+
+def auto_assign_task(task_id):
+    task = Task.objects.get(id=task_id)
+
+    # Fetch all active resources
+    resources = Resource.objects.filter(is_active=True)
+
+    if not resources.exists():
+        raise ValueError("No active resources available")
+
+    return assign_best_resource(task, resources)
+
+
 
 def score_resource(resource, task):
     availability = get_latest_availability(resource)

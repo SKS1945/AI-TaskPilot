@@ -21,6 +21,13 @@ from django.urls import path, include
 # from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('api/', include('project.urls')),
+    path('api/', include('task.urls')),
 
 ] # + debug_toolbar_urls()
+
+urlpatterns += [
+    path('api/', include('notification.urls')),
+]
+
