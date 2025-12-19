@@ -1,0 +1,7 @@
+{
+  "progress": [
+    { "task_index": 0, "percent_complete": 80, "effort_consumed": 10 },
+    { "task_index": 1, "percent_complete": 40, "effort_consumed": 12 },
+    { "task_index": 2, "percent_complete": 0, "effort_consumed": 0 }
+  ]
+}

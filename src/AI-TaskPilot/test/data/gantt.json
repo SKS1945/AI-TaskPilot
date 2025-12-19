@@ -1,0 +1,7 @@
+{
+  "tasks": [
+    { "id": "T1", "task_id": 1, "duration": 5, "dependencies": [] },
+    { "id": "T2", "task_id": 2, "duration": 7, "dependencies": ["T1"] },
+    { "id": "T3", "task_id": 3, "duration": 6, "dependencies": ["T2"] }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "skills": [
+    { "name": "Python", "category": "Backend" },
+    { "name": "Django", "category": "Backend" },
+    { "name": "ML", "category": "AI" }
+  ]
+}

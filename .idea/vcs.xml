@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/docs/misc/GanttCharts/gantt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/docs/misc/gantt-howto-django" vcs="Git" />
   </component>
 </project>

@@ -1,0 +1,8 @@
+{
+  "key": "AI-TP-01",
+  "name": "AI Task Pilot",
+  "description": "AI assisted task planning and assignment system",
+  "status": "active",
+  "planned_start": "2025-01-01",
+  "planned_finish": "2025-02-15"
+}

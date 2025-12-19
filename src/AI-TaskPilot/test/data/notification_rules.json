@@ -1,0 +1,7 @@
+{
+  "rules": [
+    { "target_type": "task", "trigger_type": "near_deadline", "threshold": 48 },
+    { "target_type": "task", "trigger_type": "predicted_delay", "threshold": 0.6 },
+    { "target_type": "task", "trigger_type": "stale_progress", "threshold": 3 }
+  ]
+}

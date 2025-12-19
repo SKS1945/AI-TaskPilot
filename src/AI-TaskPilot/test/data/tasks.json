@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "title": "Design Data Models",
+      "weight": 3,
+      "optimistic_hours": 8,
+      "most_likely_hours": 12,
+      "pessimistic_hours": 16,
+      "metadata": { "required_skills": ["Python", "Django"] }
+    },
+    {
+      "title": "Build Assignment Engine",
+      "weight": 5,
+      "optimistic_hours": 16,
+      "most_likely_hours": 24,
+      "pessimistic_hours": 32,
+      "metadata": { "required_skills": ["Python"] }
+    },
+    {
+      "title": "Delay Prediction Module",
+      "weight": 4,
+      "optimistic_hours": 12,
+      "most_likely_hours": 18,
+      "pessimistic_hours": 26,
+      "metadata": { "required_skills": ["ML"] }
+    }
+  ]
+}

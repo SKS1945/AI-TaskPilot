@@ -6,7 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from task.serializers import TaskAssignmentSerializer
-from task.services.assignment import auto_assign_task
+from task.services.assignment_service import SmartAssignmentService
+
 
 
 class AutoAssignTaskAPIView(APIView):
