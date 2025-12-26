@@ -10,7 +10,14 @@
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
-    <assistants />
+    <assistants>
+      <assistant-state connection-id="9048cd52-1774-4478-a80d-65a90d353b2e" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+        <tools />
+      </assistant-state>
+    </assistants>
+    <selection-state>
+      <model-selection />
+    </selection-state>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
@@ -41,7 +48,7 @@
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="8.0" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
@@ -59,7 +66,13 @@
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="" />
+          <adb-compartment-ocid value="" />
+          <adb-database-ocid value="" />
+          <azure-token-database-id-uri value="" />
+          <azure-token-tenant-id value="" />
+          <azure-token-client-id value="" />
+          <azure-token-client-certificate-file value="" />
+          <session-user value="souren@localhost" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -96,11 +109,20 @@
         </details>
         <debugger>
           <compile-dependencies value="true" />
-          <tcp-driver-tunneling value="false" />
           <tcp-host-address value="" />
           <tcp-port-from value="4000" />
           <tcp-port-to value="4999" />
+          <jdwp-tunnel-type value="NONE" />
           <debugger-type value="JDBC" />
+          <reverse-ssh-tunnel>
+            <host value="" />
+            <port value="22" />
+            <bind-host value="127.0.0.1" />
+            <bind-port value="0" />
+            <auth-type value="PASSWORD" />
+            <user value="" />
+            <key-file value="" />
+          </reverse-ssh-tunnel>
         </debugger>
         <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
           <object-filters />
@@ -137,6 +159,7 @@
             <object-type name="DBLINK" enabled="true" />
             <object-type name="CREDENTIAL" enabled="true" />
             <object-type name="AI_PROFILE" enabled="true" />
+            <object-type name="AI_MODEL" enabled="true" />
           </object-type-filter>
         </object-filters>
       </connection>
@@ -183,6 +206,7 @@
           <object-type name="DBLINK" enabled="true" />
           <object-type name="CREDENTIAL" enabled="true" />
           <object-type name="AI_PROFILE" enabled="true" />
+          <object-type name="AI_MODEL" enabled="true" />
         </object-type-filter>
       </filters>
       <sorting>
@@ -283,8 +307,10 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
           <content-type name="YAML" enabled="true" />
@@ -487,6 +513,11 @@
         <debug-execution-timeout value="600" />
         <parameter-history-size value="10" />
       </method-execution>
+      <method-execution>
+        <execution-timeout value="30" />
+        <debug-execution-timeout value="600" />
+        <parameter-history-size value="10" />
+      </method-execution>
     </execution-engine-settings>
     <operation-settings>
       <transactions>
@@ -537,6 +568,9 @@
       <credential-settings>
         <credentials />
       </credential-settings>
+      <profile-settings>
+        <profiles />
+      </profile-settings>
     </assistant-settings>
     <general-settings>
       <regional-settings>

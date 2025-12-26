@@ -1,14 +1,18 @@
 from django.urls import path
-from task.views import (
+from .views import (
     TaskListAPIView,
+    TaskDetailAPIView,
     AutoAssignTaskAPIView,
     MonitorProgressAPIView,
-    PredictDelayAPIView,
+    PredictDelayAPIView
 )
 
 urlpatterns = [
-    path("<int:project_id>/", TaskListAPIView.as_view()),
-    path("<int:project_id>/assign/", AutoAssignTaskAPIView.as_view()),
-    path("<int:project_id>/monitor/", MonitorProgressAPIView.as_view()),
-    path("<int:project_id>/predict/", PredictDelayAPIView.as_view()),
+    path('project/<int:project_id>/', TaskListAPIView.as_view(), name='task-list'),
+    path('<int:task_id>/', TaskDetailAPIView.as_view(), name='task-detail'),
+
+    # AI Actions
+    path('project/<int:project_id>/auto-assign/', AutoAssignTaskAPIView.as_view(), name='auto-assign'),
+    path('project/<int:project_id>/monitor/', MonitorProgressAPIView.as_view(), name='monitor-progress'),
+    path('project/<int:project_id>/predict-delay/', PredictDelayAPIView.as_view(), name='predict-delay'),
 ]
