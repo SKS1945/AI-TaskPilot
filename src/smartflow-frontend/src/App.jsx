@@ -3,33 +3,30 @@ import './App.css';
 
 // Components
 import { TopBar } from './components/navigation/TopBar';
-import { SideMenu, NAV_ITEMS } from './components/navigation/SideMenu';
+import { SideMenu } from './components/navigation/SideMenu'; // Remove NAV_ITEMS from here
+import { NAV_ITEMS } from './components/navigation/navConfig'; // <--- Add this import
 import { Dashboard } from './components/pages/Dashboard/Dashboard';
 import { Tasks } from './components/pages/Tasks/Tasks';
+import { Resources } from './components/pages/Resources/Resources';
+import { Assignments } from './components/pages/Assignments/Assignments';
+import { Settings } from './components/pages/Settings/Settings';
+import { Placeholder } from './components/pages/Placeholders/Placeholder';
 
-// Config
 const API_BASE = "http://localhost:8000/api";
 
 function App() {
-    // --- Global State ---
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [activePage, setActivePage] = useState('dashboard');
 
-    // --- Data State ---
+    // Data State
     const [projectList, setProjectList] = useState([]);
     const [currentProject, setCurrentProject] = useState(null);
-
-    // Dashboard Data
     const [dashboardData, setDashboardData] = useState(null);
-
-    // Task Data
     const [tasks, setTasks] = useState([]);
     const [draggedTaskId, setDraggedTaskId] = useState(null);
-
-    // --- UI State (TopBar specific) ---
     const [isProjectMenuOpen, setProjectMenuOpen] = useState(false);
 
-    // 1. Initial Load: Get Projects
+    // Initial Load
     useEffect(() => {
         fetch(`${API_BASE}/projects/context-list/`)
             .then(res => res.json())
@@ -40,7 +37,7 @@ function App() {
             .catch(err => console.error("API Error:", err));
     }, []);
 
-    // 2. Fetch Page Data based on Active Page & Project
+    // Fetch Data on Change
     useEffect(() => {
         if (!currentProject) return;
 
@@ -56,37 +53,24 @@ function App() {
         }
     }, [activePage, currentProject]);
 
-    // --- Handlers ---
     const handleNavClick = (id) => {
         setActivePage(id);
-        setSidebarOpen(false); // Close mobile menu on click
+        setSidebarOpen(false);
     };
 
-    // Drag & Drop Handlers
-    const onDragStart = (e, taskId) => {
-        setDraggedTaskId(taskId);
-        e.dataTransfer.effectAllowed = "move";
-    };
-
-    const onDragOver = (e) => {
-        e.preventDefault();
-    };
-
+    // Drag Handlers
+    const onDragStart = (e, taskId) => { setDraggedTaskId(taskId); e.dataTransfer.effectAllowed = "move"; };
+    const onDragOver = (e) => e.preventDefault();
     const onDrop = (e, newStatus) => {
         e.preventDefault();
         if (!draggedTaskId) return;
-
-        const updatedTasks = tasks.map(t =>
-            t.id === draggedTaskId ? { ...t, status: newStatus } : t
-        );
+        const updatedTasks = tasks.map(t => t.id === draggedTaskId ? { ...t, status: newStatus } : t);
         setTasks(updatedTasks);
-
         fetch(`${API_BASE}/tasks/${draggedTaskId}/`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus })
-        }).catch(err => console.error("Failed to update task", err));
-
+        }).catch(err => console.error("Update failed", err));
         setDraggedTaskId(null);
     };
 
@@ -94,7 +78,6 @@ function App() {
 
     return (
         <div className="app-container">
-
             <TopBar
                 onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)}
                 projectList={projectList}
@@ -117,24 +100,15 @@ function App() {
                     <p className="page-description">{activePageData.desc}</p>
                 </div>
 
-                {activePage === 'dashboard' && (
-                    <Dashboard data={dashboardData} />
-                )}
+                {activePage === 'dashboard' && <Dashboard data={dashboardData} />}
+                {activePage === 'tasks' && <Tasks tasks={tasks} onDragStart={onDragStart} onDragOver={onDragOver} onDrop={onDrop} />}
+                {activePage === 'resources' && <Resources />}
+                {activePage === 'assignments' && <Assignments />}
+                {activePage === 'settings' && <Settings />}
 
-                {activePage === 'tasks' && (
-                    <Tasks
-                        tasks={tasks}
-                        onDragStart={onDragStart}
-                        onDragOver={onDragOver}
-                        onDrop={onDrop}
-                    />
-                )}
-
-                {/* Placeholders for other pages */}
-                {activePage !== 'dashboard' && activePage !== 'tasks' && (
-                    <div className="placeholder-card" style={{padding:'2rem', border:'1px dashed #ccc', borderRadius:'8px'}}>
-                        <p>Content for {activePageData.label} module goes here.</p>
-                    </div>
+                {/* Fallback for pages not yet created */}
+                {!['dashboard', 'tasks', 'resources', 'assignments', 'settings'].includes(activePage) && (
+                    <Placeholder pageName={activePageData.label} />
                 )}
             </main>
         </div>
