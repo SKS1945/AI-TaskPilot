@@ -1,0 +1,29 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.kpi-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-card.wide { grid-column: span 2; }
+.kpi-card h3 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; }
+.health-score { font-size: 3.5rem; font-weight: 700; color: var(--success); }
+.health-score.risk { color: var(--danger); }
+.kpi-sub { color: var(--text-muted); margin-top: 0.5rem; }
+.risk-list, .deadline-list { list-style: none; }
+.risk-item { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border); }
+.risk-prob { background: #fef2f2; color: var(--danger); padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.85rem; }
+.deadline-item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px dashed var(--border); }
+.deadline-date { font-weight: 600; color: var(--primary); }
+
+@media (max-width: 900px) { .kpi-card.wide { grid-column: span 1; } }
